@@ -13,7 +13,7 @@ export const positions: Position[] = [
       {
         id: 'gk-shot-stopper',
         name: 'Defensor Impassível',
-        archetype: 'Shot Stopper',
+        archetype: 'Parador de Chutes',
         description:
           'Goleiro clássico de área. Excelente em 1v1, defesas difíceis e reflexos rápidos. Signature Play Styles Far Reach+ e Footwork+ tornam este arquétipo o mais consistente no meta competitivo.',
         positions: ['GK'],
@@ -75,7 +75,7 @@ export const positions: Position[] = [
       {
         id: 'gk-sweeper-keeper',
         name: 'Goleiro Moderno',
-        archetype: 'Sweeper Keeper',
+        archetype: 'Goleiro-Líbero',
         description:
           'Goleiro que participa ativamente da construção de jogo. Sai da área para interceptar passes longos, inicia ataques e domina o espaço atrás da linha defensiva alta.',
         positions: ['GK'],
@@ -148,7 +148,7 @@ export const positions: Position[] = [
       {
         id: 'cb-engine',
         name: 'Zagueiro Versátil',
-        archetype: 'Engine',
+        archetype: 'Engrenagem',
         description:
           'O arquétipo mais meta para CB no EA FC 26. Intercept+, Jockey+ e Anticipate+ via especializações tornam este zagueiro brutalmente eficaz em qualquer sistema defensivo. Stamina incansável para pressionar a partida inteira.',
         positions: ['CB'],
@@ -210,7 +210,7 @@ export const positions: Position[] = [
       {
         id: 'cb-boss',
         name: 'Zagueiro Dominante',
-        archetype: 'Boss',
+        archetype: 'Chefe',
         description:
           'Presença física avassaladora. Domina duelos aéreos e físicos com Bruiser+ e Aerial Fortress+. Ideal para equipes que precisam de um CB imponente que intimida qualquer centroavante.',
         positions: ['CB'],
@@ -283,7 +283,7 @@ export const positions: Position[] = [
       {
         id: 'lb-marauder',
         name: 'Lateral Destruidor',
-        archetype: 'Marauder',
+        archetype: 'Maroto',
         description:
           'O arquétipo meta para laterais no EA FC 26. Velocidade explosiva com Rapid+, qualidade de cruzamento com Whipped Pass+ e mobilidade com Quick Step+. Terroriza defensores pela linha e fecha bem nas transições.',
         positions: ['LB', 'RB'],
@@ -345,7 +345,7 @@ export const positions: Position[] = [
       {
         id: 'lb-engine',
         name: 'Lateral Defensivo',
-        archetype: 'Engine',
+        archetype: 'Engrenagem',
         description:
           'Lateral equilibrado com foco defensivo. Stamina para cobrir a linha o jogo inteiro, Intercept+ para recuperar bolas e presença física para ganhar duelos nas costas.',
         positions: ['LB', 'RB'],
@@ -418,7 +418,7 @@ export const positions: Position[] = [
       {
         id: 'cdm-recycler',
         name: 'Volante Caçador',
-        archetype: 'Recycler',
+        archetype: 'Reciclador',
         description:
           'O arquétipo meta para CDM no EA FC 26. Intercept+, Press Proven+ e Pinged Pass+ via especializações criam um volante que vence duelos, resiste à pressão e distribui com qualidade. O pivô perfeito.',
         positions: ['CDM'],
@@ -615,7 +615,7 @@ export const positions: Position[] = [
       {
         id: 'cm-recycler',
         name: 'Meia Dinâmico',
-        archetype: 'Recycler',
+        archetype: 'Reciclador',
         description:
           'Meia box-to-box com foco em recuperação e transição. Intercept+ para roubar bolas e Pinged Pass+ para a distribuição rápida no contra-ataque. Essencial para times que jogam em transição.',
         positions: ['CM'],
@@ -688,7 +688,7 @@ export const positions: Position[] = [
       {
         id: 'cam-creator',
         name: 'Criador de Jogo',
-        archetype: 'Creator',
+        archetype: 'Criador',
         description:
           'O arquétipo meta para CAM. Incisive Pass+ e Inventive+ criam passes que desmontam até as defesas mais organizadas. Passador visionário especializado em infiltrações e bolas decisivas na última linha.',
         positions: ['CAM'],
@@ -750,7 +750,7 @@ export const positions: Position[] = [
       {
         id: 'cam-magician',
         name: 'Meia-Atacante Técnico',
-        archetype: 'Magician',
+        archetype: 'Mágico',
         description:
           'CAM criativo com drible notável e finalização perigosa. Technical+ e Finesse Shot+ tornam cada situação 1v1 uma ameaça real. Pode criar e finalizar com igual eficiência.',
         positions: ['CAM'],
@@ -823,7 +823,7 @@ export const positions: Position[] = [
       {
         id: 'winger-magician',
         name: 'Ponta Técnico',
-        archetype: 'Magician',
+        archetype: 'Mágico',
         description:
           'O arquétipo meta para pontas no EA FC 26. Technical+, Finesse Shot+ e Rapid tornam este jogador imprevisível: pode driblar para dentro e finalizar em curva ou abrir pela linha e cruzar. Extremamente versátil.',
         positions: ['LW', 'RW'],
@@ -885,7 +885,7 @@ export const positions: Position[] = [
       {
         id: 'winger-spark',
         name: 'Ponta Velocista',
-        archetype: 'Spark',
+        archetype: 'Fagulha',
         description:
           'Pura velocidade e explosão. Rapid+ e Trickster+ criam um ponta que chega na linha de fundo antes que o lateral pisque. Ideal para cruzamentos rasteiros e transições rápidas.',
         positions: ['LW', 'RW'],
@@ -958,7 +958,7 @@ export const positions: Position[] = [
       {
         id: 'st-finisher',
         name: 'Centroavante Clínico',
-        archetype: 'Finisher',
+        archetype: 'Finalizador',
         description:
           'O arquétipo meta para ST no EA FC 26. Low Driven Shot+ continua sendo o chute mais eficaz contra goleiros. First Touch+ para controlar passes difíceis na área e Gamechanger+ para mudar partidas com uma jogada.',
         positions: ['ST'],
@@ -1020,7 +1020,7 @@ export const positions: Position[] = [
       {
         id: 'st-magician',
         name: 'Falso 9 Técnico',
-        archetype: 'Magician',
+        archetype: 'Mágico',
         description:
           'Centroavante criativo que baixa para criar e desequilibra com drible. Technical+ e Finesse Shot+ tornam cada situação 1v1 uma ameaça. Ideal para times que jogam com o atacante como organizador.',
         positions: ['ST'],
