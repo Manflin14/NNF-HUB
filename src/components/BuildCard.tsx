@@ -42,9 +42,9 @@ export default function BuildCard({ build }: BuildCardProps) {
       <div className="p-6">
         {/* Header */}
         <div className="mb-5 pr-16">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--text-secondary)] mb-1">
+          <span className="inline-flex items-center rounded-full border border-[var(--gold)]/30 bg-[var(--gold-dim)] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[var(--gold)] mb-2">
             {build.archetype}
-          </p>
+          </span>
           <h3 className="text-xl font-bold text-[var(--text-primary)]">{build.name}</h3>
           <p className="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">{build.description}</p>
         </div>
