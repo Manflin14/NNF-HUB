@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(/c/Users/guilh/AppData/Roaming/npm/npx.cmd create-next-app@latest . --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\" --yes)",
+      "Bash(\"/c/Program Files/nodejs/npx.cmd\" create-next-app@latest . --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\" --yes)",
+      "Bash(\"/c/Program Files/nodejs/npx.cmd\" create-next-app@latest proclubs-hub --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\" --yes)",
+      "WebSearch",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-git --yes)",
+      "Read(//c/Users/guilh/OneDrive/Área de Trabalho/Projetos/**)",
+      "Bash(npx create-next-app@latest proclubs-hub --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-git --yes)",
+      "Bash(npm run:*)"
+    ]
+  }
+}
