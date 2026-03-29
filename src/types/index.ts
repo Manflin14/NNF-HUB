@@ -41,19 +41,19 @@ export interface GKAttributes {
 
 export type BuildAttributes = OutfieldAttributes | GKAttributes
 
-// Labels para exibição
+// Labels para exibição (nomes exatos do EA FC 26 PT-BR)
 export const ATTR_LABELS: Record<string, string> = {
-  acceleration: 'Aceleração', sprintSpeed: 'Vel. Sprint',
-  agility: 'Agilidade', balance: 'Equilíbrio', reactions: 'Reações',
-  ballControl: 'Controle', dribbling: 'Dribles', composure: 'Compostura',
-  attPosition: 'Pos. Ataque', finishing: 'Finalização', shotPower: 'Força Chute',
-  longShots: 'Chute Longo', volleys: 'Voleio', penalties: 'Pênaltis',
-  vision: 'Visão', crossing: 'Cruzamento', fkAccuracy: 'Precisão FK',
-  shortPass: 'Passe Curto', longPass: 'Passe Longo', curve: 'Curva',
-  interceptions: 'Interceptações', headingAccuracy: 'Cabecear',
-  defAwareness: 'Consciência Def.', standTackle: 'Carrinho em Pé', slideTackle: 'Carrinho no Chão',
-  jumping: 'Salto', strength: 'Força', stamina: 'Resistência', aggression: 'Agressividade',
-  gkDiving: 'GK Diving', gkHandling: 'GK Manuseio', gkKicking: 'GK Chute',
+  acceleration: 'Aceleração',  sprintSpeed: 'Pique',
+  agility: 'Agilidade',        balance: 'Equilíbrio',   reactions: 'Reação',
+  ballControl: 'Contr. bola',  dribbling: 'Condução',   composure: 'Frieza',
+  attPosition: 'Pos. ataque',  finishing: 'Finalização', shotPower: 'F. do chute',
+  longShots: 'Ch. de longe',   volleys: 'Voleio',        penalties: 'Pênaltis',
+  vision: 'Visão',             crossing: 'Cruzamento',  fkAccuracy: 'Cobr. falta',
+  shortPass: 'Passe curto',    longPass: 'Lançamento',  curve: 'Curva',
+  interceptions: 'Intercept.', headingAccuracy: 'Cabeceio',
+  defAwareness: 'Noção def.',  standTackle: 'Div. em pé', slideTackle: 'Carrinho',
+  jumping: 'Impulsão',         strength: 'Força',       stamina: 'Fôlego', aggression: 'Combativ.',
+  gkDiving: 'GK Diving',       gkHandling: 'GK Manuseio', gkKicking: 'GK Chute',
   gkPositioning: 'GK Posição', gkReflexes: 'GK Reflexos',
 }
 

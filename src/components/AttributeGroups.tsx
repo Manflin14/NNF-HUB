@@ -68,10 +68,10 @@ export default function AttributeGroups({ attributes, keyAttributes }: Props) {
           <Bar label="GK Reflexos" value={a.gkReflexes}    isKey={key('gkReflexes')} />
         </Group>
         <Group title="Físico">
-          <Bar label="Salto"         value={a.jumping}    isKey={key('jumping')} />
-          <Bar label="Força"         value={a.strength}   isKey={key('strength')} />
-          <Bar label="Resistência"   value={a.stamina}    isKey={key('stamina')} />
-          <Bar label="Agressividade" value={a.aggression} isKey={key('aggression')} />
+          <Bar label="Impulsão"  value={a.jumping}    isKey={key('jumping')} />
+          <Bar label="Força"     value={a.strength}   isKey={key('strength')} />
+          <Bar label="Fôlego"    value={a.stamina}    isKey={key('stamina')} />
+          <Bar label="Combativ." value={a.aggression} isKey={key('aggression')} />
         </Group>
       </div>
     )
@@ -84,42 +84,42 @@ export default function AttributeGroups({ attributes, keyAttributes }: Props) {
         <Bar label="Aceleração"  value={a.acceleration} isKey={key('acceleration')} />
         <Bar label="Vel. Sprint" value={a.sprintSpeed}  isKey={key('sprintSpeed')} />
       </Group>
-      <Group title="Controle de Bola">
-        <Bar label="Agilidade"  value={a.agility}     isKey={key('agility')} />
-        <Bar label="Equilíbrio" value={a.balance}     isKey={key('balance')} />
-        <Bar label="Reações"    value={a.reactions}   isKey={key('reactions')} />
-        <Bar label="Controle"   value={a.ballControl} isKey={key('ballControl')} />
-        <Bar label="Dribles"    value={a.dribbling}   isKey={key('dribbling')} />
-        <Bar label="Compostura" value={a.composure}   isKey={key('composure')} />
+      <Group title="Controle de bola">
+        <Bar label="Agilidade"   value={a.agility}     isKey={key('agility')} />
+        <Bar label="Equilíbrio"  value={a.balance}     isKey={key('balance')} />
+        <Bar label="Reação"      value={a.reactions}   isKey={key('reactions')} />
+        <Bar label="Contr. bola" value={a.ballControl} isKey={key('ballControl')} />
+        <Bar label="Condução"    value={a.dribbling}   isKey={key('dribbling')} />
+        <Bar label="Frieza"      value={a.composure}   isKey={key('composure')} />
       </Group>
-      <Group title="Finalização">
-        <Bar label="Pos. Ataque"  value={a.attPosition} isKey={key('attPosition')} />
+      <Group title="Artilharia">
+        <Bar label="Pos. ataque"  value={a.attPosition} isKey={key('attPosition')} />
         <Bar label="Finalização"  value={a.finishing}   isKey={key('finishing')} />
-        <Bar label="Força Chute"  value={a.shotPower}   isKey={key('shotPower')} />
-        <Bar label="Chute Longo"  value={a.longShots}   isKey={key('longShots')} />
+        <Bar label="F. do chute"  value={a.shotPower}   isKey={key('shotPower')} />
+        <Bar label="Ch. de longe" value={a.longShots}   isKey={key('longShots')} />
         <Bar label="Voleio"       value={a.volleys}     isKey={key('volleys')} />
         <Bar label="Pênaltis"     value={a.penalties}   isKey={key('penalties')} />
       </Group>
       <Group title="Passe">
         <Bar label="Visão"       value={a.vision}      isKey={key('vision')} />
         <Bar label="Cruzamento"  value={a.crossing}    isKey={key('crossing')} />
-        <Bar label="Precisão FK" value={a.fkAccuracy}  isKey={key('fkAccuracy')} />
-        <Bar label="Passe Curto" value={a.shortPass}   isKey={key('shortPass')} />
-        <Bar label="Passe Longo" value={a.longPass}    isKey={key('longPass')} />
+        <Bar label="Cobr. falta" value={a.fkAccuracy}  isKey={key('fkAccuracy')} />
+        <Bar label="Passe curto" value={a.shortPass}   isKey={key('shortPass')} />
+        <Bar label="Lançamento"  value={a.longPass}    isKey={key('longPass')} />
         <Bar label="Curva"       value={a.curve}       isKey={key('curve')} />
       </Group>
       <Group title="Defesa">
-        <Bar label="Interceptações" value={a.interceptions}   isKey={key('interceptions')} />
-        <Bar label="Cabecear"       value={a.headingAccuracy} isKey={key('headingAccuracy')} />
-        <Bar label="Consciência"    value={a.defAwareness}    isKey={key('defAwareness')} />
-        <Bar label="Carrinho Pé"    value={a.standTackle}     isKey={key('standTackle')} />
-        <Bar label="Carrinho Chão"  value={a.slideTackle}     isKey={key('slideTackle')} />
+        <Bar label="Intercept."  value={a.interceptions}   isKey={key('interceptions')} />
+        <Bar label="Cabeceio"    value={a.headingAccuracy} isKey={key('headingAccuracy')} />
+        <Bar label="Noção def."  value={a.defAwareness}    isKey={key('defAwareness')} />
+        <Bar label="Div. em pé"  value={a.standTackle}     isKey={key('standTackle')} />
+        <Bar label="Carrinho"    value={a.slideTackle}     isKey={key('slideTackle')} />
       </Group>
       <Group title="Físico">
-        <Bar label="Salto"         value={a.jumping}    isKey={key('jumping')} />
-        <Bar label="Força"         value={a.strength}   isKey={key('strength')} />
-        <Bar label="Resistência"   value={a.stamina}    isKey={key('stamina')} />
-        <Bar label="Agressividade" value={a.aggression} isKey={key('aggression')} />
+        <Bar label="Impulsão"  value={a.jumping}    isKey={key('jumping')} />
+        <Bar label="Força"     value={a.strength}   isKey={key('strength')} />
+        <Bar label="Fôlego"    value={a.stamina}    isKey={key('stamina')} />
+        <Bar label="Combativ." value={a.aggression} isKey={key('aggression')} />
       </Group>
     </div>
   )
