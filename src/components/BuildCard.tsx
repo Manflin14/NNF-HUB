@@ -2,14 +2,14 @@
 
 import { useState } from 'react'
 import type { Build } from '@/types'
-import AttributeBar from './AttributeBar'
+import AttributeGroups from './AttributeGroups'
 import PlayStyleBadge from './PlayStyleBadge'
 import ProgressionTable from './ProgressionTable'
 
 const difficultyColors: Record<Build['difficulty'], string> = {
-  Iniciante: '#4ade80',
-  Intermediário: '#facc15',
-  Avançado: '#f87171',
+  Iniciante:      '#4ade80',
+  Intermediário:  '#facc15',
+  Avançado:       '#f87171',
 }
 
 const skillStars = (n: number) => '★'.repeat(n) + '☆'.repeat(5 - n)
@@ -59,7 +59,7 @@ export default function BuildCard({ build }: BuildCardProps) {
                 : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
             }`}
           >
-            Visão Geral
+            Atributos
           </button>
           <button
             onClick={() => setTab('progression')}
@@ -69,23 +69,24 @@ export default function BuildCard({ build }: BuildCardProps) {
                 : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
             }`}
           >
-            Progressão por Nível
+            Progressão
           </button>
         </div>
 
         {tab === 'overview' && (
           <>
-            {/* Attributes */}
-            <div className="mb-5 space-y-2.5 rounded-lg border border-[var(--border)] bg-[var(--surface-2)] p-4">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-secondary)] mb-3">
-                Atributos — Nível Máximo
-              </p>
-              <AttributeBar label="PAC" value={build.attributes.pac} />
-              <AttributeBar label="SHO" value={build.attributes.sho} />
-              <AttributeBar label="PAS" value={build.attributes.pas} />
-              <AttributeBar label="DRI" value={build.attributes.dri} />
-              <AttributeBar label="DEF" value={build.attributes.def} />
-              <AttributeBar label="PHY" value={build.attributes.phy} />
+            {/* Key attributes legend */}
+            <div className="flex items-center gap-1.5 mb-3 text-[10px] text-[var(--text-secondary)]">
+              <span className="text-[var(--gold)]">●</span>
+              <span>Atributo-chave — custo de AP reduzido no jogo</span>
+            </div>
+
+            {/* Individual attributes grouped */}
+            <div className="mb-5 rounded-lg border border-[var(--border)] bg-[var(--surface-2)] p-4">
+              <AttributeGroups
+                attributes={build.attributes}
+                keyAttributes={build.keyAttributes}
+              />
             </div>
 
             {/* Play Styles */}

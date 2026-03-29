@@ -1,62 +1,86 @@
 export type PositionSlug =
-  | 'goleiro'
-  | 'zagueiro'
-  | 'lateral'
-  | 'volante'
-  | 'meia'
-  | 'meia-atacante'
-  | 'ponta'
-  | 'centroavante'
+  | 'goleiro' | 'zagueiro' | 'lateral' | 'volante'
+  | 'meia' | 'meia-atacante' | 'ponta' | 'centroavante'
 
 export type PositionCode = 'GK' | 'CB' | 'LB' | 'RB' | 'CDM' | 'CM' | 'CAM' | 'LW' | 'RW' | 'ST'
 
 export type Difficulty = 'Iniciante' | 'Intermediário' | 'Avançado'
 
-export interface Attributes {
-  pac: number
-  sho: number
-  pas: number
-  dri: number
-  def: number
-  phy: number
+// ─── Atributos individuais ────────────────────────────────────────────────────
+
+export interface OutfieldAttributes {
+  kind: 'outfield'
+  // Ritmo
+  acceleration: number; sprintSpeed: number
+  // Controle de Bola
+  agility: number; balance: number; reactions: number
+  ballControl: number; dribbling: number; composure: number
+  // Finalização
+  attPosition: number; finishing: number; shotPower: number
+  longShots: number; volleys: number; penalties: number
+  // Passe
+  vision: number; crossing: number; fkAccuracy: number
+  shortPass: number; longPass: number; curve: number
+  // Defesa
+  interceptions: number; headingAccuracy: number; defAwareness: number
+  standTackle: number; slideTackle: number
+  // Físico
+  jumping: number; strength: number; stamina: number; aggression: number
 }
+
+export interface GKAttributes {
+  kind: 'gk'
+  // Ritmo
+  acceleration: number; sprintSpeed: number
+  // Goleiro
+  gkDiving: number; gkHandling: number; gkKicking: number
+  gkPositioning: number; gkReflexes: number
+  // Físico
+  jumping: number; strength: number; stamina: number; aggression: number
+}
+
+export type BuildAttributes = OutfieldAttributes | GKAttributes
+
+// Labels para exibição
+export const ATTR_LABELS: Record<string, string> = {
+  acceleration: 'Aceleração', sprintSpeed: 'Vel. Sprint',
+  agility: 'Agilidade', balance: 'Equilíbrio', reactions: 'Reações',
+  ballControl: 'Controle', dribbling: 'Dribles', composure: 'Compostura',
+  attPosition: 'Pos. Ataque', finishing: 'Finalização', shotPower: 'Força Chute',
+  longShots: 'Chute Longo', volleys: 'Voleio', penalties: 'Pênaltis',
+  vision: 'Visão', crossing: 'Cruzamento', fkAccuracy: 'Precisão FK',
+  shortPass: 'Passe Curto', longPass: 'Passe Longo', curve: 'Curva',
+  interceptions: 'Interceptações', headingAccuracy: 'Cabecear',
+  defAwareness: 'Consciência Def.', standTackle: 'Carrinho em Pé', slideTackle: 'Carrinho no Chão',
+  jumping: 'Salto', strength: 'Força', stamina: 'Resistência', aggression: 'Agressividade',
+  gkDiving: 'GK Diving', gkHandling: 'GK Manuseio', gkKicking: 'GK Chute',
+  gkPositioning: 'GK Posição', gkReflexes: 'GK Reflexos',
+}
+
+// ─── Play Styles ─────────────────────────────────────────────────────────────
 
 export interface PlayStyle {
   name: string
   category: 'attacking' | 'defending' | 'physical' | 'technical' | 'goalkeeper'
 }
 
-// ─── Level progression ───────────────────────────────────────────────────────
+// ─── Progressão ──────────────────────────────────────────────────────────────
 
-/** Pontos de atributo recomendados para gastar em cada faixa de nível */
-export interface AttributeAllocation {
-  pac: number
-  sho: number
-  pas: number
-  dri: number
-  def: number
-  phy: number
-}
-
-/** Uma faixa de níveis com foco recomendado */
 export interface LevelTier {
-  fromLevel: number
-  toLevel: number
-  label: string           // ex: "Fundação", "Consolidação"
-  focus: string           // dica textual do que priorizar
-  pointsGained: number    // total de pontos disponíveis nessa faixa
-  allocation: AttributeAllocation
+  fromLevel: number; toLevel: number
+  label: string
+  focus: string
+  pointsGained: number
+  priorities: string[] // chaves de atributos a priorizar nesta faixa
 }
 
-/** Sistema de progressão completo de uma build */
 export interface LevelProgression {
   maxLevel: number
   totalPoints: number
-  baseAttributes: Attributes   // stats ao entrar no nível 1
   tiers: LevelTier[]
 }
 
-// ─── Build ────────────────────────────────────────────────────────────────────
+// ─── Build ───────────────────────────────────────────────────────────────────
 
 export interface Build {
   id: string
@@ -64,7 +88,8 @@ export interface Build {
   archetype: string
   description: string
   positions: PositionCode[]
-  attributes: Attributes       // stats no nível máximo (meta)
+  attributes: BuildAttributes
+  keyAttributes: string[] // atributos com custo reduzido de AP (círculo verde no jogo)
   playStyles: PlayStyle[]
   heightRange: string
   weightRange: string
@@ -76,6 +101,8 @@ export interface Build {
   isMeta: boolean
   progression: LevelProgression
 }
+
+// ─── Position ────────────────────────────────────────────────────────────────
 
 export interface Position {
   slug: PositionSlug
