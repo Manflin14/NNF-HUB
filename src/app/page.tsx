@@ -73,16 +73,31 @@ export default function Home() {
             </span>
           </Link>
 
-          {/* Coming soon placeholders */}
-          {[1, 2].map((i) => (
+          {/* TFT */}
+          <Link
+            href="/tft"
+            className="group relative flex flex-col items-center justify-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] w-36 h-36 transition-all duration-200 hover:border-[#c084fc]/60 hover:bg-[var(--surface-2)] hover:-translate-y-0.5"
+          >
             <div
-              key={i}
-              className="flex flex-col items-center justify-center gap-3 rounded-xl border border-[var(--border)] border-dashed bg-[var(--surface)]/40 w-36 h-36 opacity-40"
+              className="absolute top-0 left-0 right-0 h-0.5 rounded-t-xl opacity-60 group-hover:opacity-100 transition-opacity"
+              style={{ background: '#c084fc' }}
+            />
+            <span
+              className="rounded px-2 py-1 text-sm font-bold text-black"
+              style={{ background: '#c084fc' }}
             >
-              <div className="w-10 h-10 rounded-lg bg-[var(--border)]" />
-              <span className="text-xs text-[var(--text-secondary)]">Em breve</span>
-            </div>
-          ))}
+              Set 16
+            </span>
+            <span className="text-xs font-semibold text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors">
+              TFT
+            </span>
+          </Link>
+
+          {/* Coming soon placeholder */}
+          <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-[var(--border)] border-dashed bg-[var(--surface)]/40 w-36 h-36 opacity-40">
+            <div className="w-10 h-10 rounded-lg bg-[var(--border)]" />
+            <span className="text-xs text-[var(--text-secondary)]">Em breve</span>
+          </div>
         </div>
       </section>
 

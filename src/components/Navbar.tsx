@@ -8,6 +8,7 @@ export default function Navbar() {
   const pathname = usePathname()
 
   const isEaFc = pathname === '/ea-fc' || pathname.startsWith('/posicao/')
+  const isTft = pathname === '/tft'
   const isHome = pathname === '/'
 
   return (
@@ -25,7 +26,7 @@ export default function Navbar() {
           {/* Divider */}
           <div className="h-5 w-px bg-[var(--border)] shrink-0" />
 
-          {/* Game link */}
+          {/* EA FC link */}
           <Link
             href="/ea-fc"
             className={`flex items-center gap-1.5 rounded px-2.5 py-1.5 text-xs font-semibold transition-colors ${
@@ -41,6 +42,24 @@ export default function Navbar() {
               FC 26
             </span>
             <span className="hidden sm:inline">EA FC 26</span>
+          </Link>
+
+          {/* TFT link */}
+          <Link
+            href="/tft"
+            className={`flex items-center gap-1.5 rounded px-2.5 py-1.5 text-xs font-semibold transition-colors ${
+              isTft
+                ? 'bg-[#c084fc]/10 text-[#c084fc]'
+                : 'text-[var(--text-secondary)] hover:bg-[var(--surface-2)] hover:text-[var(--text-primary)]'
+            }`}
+          >
+            <span
+              className="rounded px-1 py-0.5 text-[9px] font-bold text-black"
+              style={{ background: '#c084fc' }}
+            >
+              S16
+            </span>
+            <span className="hidden sm:inline">TFT</span>
           </Link>
 
           {/* Position nav — only in EA FC section */}
