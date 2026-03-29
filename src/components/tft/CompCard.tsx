@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import type { TFTComp } from '@/types/tft'
 
 const tierColors: Record<TFTComp['tier'], { bg: string; text: string; border: string }> = {
@@ -229,6 +230,18 @@ export default function CompCard({ comp }: CompCardProps) {
             ))}
           </ul>
         )}
+
+        {/* Link to full page */}
+        <div className="mt-4 pt-4 border-t border-[var(--border)]">
+          <Link
+            href={`/tft/${comp.id}`}
+            className="flex items-center justify-center gap-2 w-full rounded-lg py-2 text-xs font-semibold transition-colors"
+            style={{ background: tier.bg, color: tier.text, border: `1px solid ${tier.border}` }}
+          >
+            Ver posicionamento no board
+            <span>→</span>
+          </Link>
+        </div>
       </div>
     </div>
   )
