@@ -40,21 +40,32 @@ export default function ProgressionTable({ progression }: ProgressionTableProps)
               {tier.focus}
             </p>
 
-            {/* Priority attributes */}
+            {/* Point allocation */}
             {tier.priorities.length > 0 && (
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-secondary)] mb-1.5">
-                  Priorizar
+                <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-secondary)] mb-2">
+                  Distribuição de Pontos
                 </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {tier.priorities.map((attr) => (
-                    <span
-                      key={attr}
-                      className="rounded-full px-2.5 py-0.5 text-[10px] font-bold border border-[var(--gold)]/30 bg-[var(--gold-dim)] text-[var(--gold)]"
-                    >
-                      {ATTR_LABELS[attr] ?? attr}
-                    </span>
-                  ))}
+                <div className="space-y-1.5">
+                  {tier.priorities.map(({ attr, points }) => {
+                    const pct = Math.round((points / tier.pointsGained) * 100)
+                    return (
+                      <div key={attr} className="flex items-center gap-2">
+                        <span className="text-[10px] text-[var(--gold)] w-28 shrink-0 truncate font-semibold">
+                          {ATTR_LABELS[attr] ?? attr}
+                        </span>
+                        <div className="flex-1 h-1.5 rounded-full bg-[var(--border)]">
+                          <div
+                            className="h-full rounded-full bg-[var(--gold)]"
+                            style={{ width: `${pct}%` }}
+                          />
+                        </div>
+                        <span className="text-[10px] font-bold text-[var(--accent)] w-10 text-right tabular-nums shrink-0">
+                          +{points} pts
+                        </span>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             )}

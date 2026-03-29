@@ -71,7 +71,7 @@ export interface LevelTier {
   label: string
   focus: string
   pointsGained: number
-  priorities: string[] // chaves de atributos a priorizar nesta faixa
+  priorities: { attr: string; points: number }[]
 }
 
 export interface LevelProgression {
