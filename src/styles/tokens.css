@@ -4,10 +4,8 @@
 
 @theme {
   /* ========================================
-     COLORS — Primitives (Tailwind-scale palettes)
+     COLORS — Primitives
      ======================================== */
-
-  /* Neutral / Slate palette */
   --color-slate-50: #f8fafc;
   --color-slate-100: #f1f5f9;
   --color-slate-200: #e2e8f0;
@@ -20,7 +18,6 @@
   --color-slate-900: #0f172a;
   --color-slate-950: #020617;
 
-  /* Green / Emerald palette */
   --color-emerald-50: #ecfdf5;
   --color-emerald-100: #d1fae5;
   --color-emerald-200: #a7f3d0;
@@ -33,7 +30,6 @@
   --color-emerald-900: #064e3b;
   --color-emerald-950: #022c22;
 
-  /* Violet / Purple palette */
   --color-violet-50: #f5f3ff;
   --color-violet-100: #ede9fe;
   --color-violet-200: #ddd6fe;
@@ -46,7 +42,6 @@
   --color-violet-900: #4c1d95;
   --color-violet-950: #2e1065;
 
-  /* Blue palette */
   --color-blue-50: #eff6ff;
   --color-blue-100: #dbeafe;
   --color-blue-200: #bfdbfe;
@@ -59,7 +54,6 @@
   --color-blue-900: #1e3a8a;
   --color-blue-950: #172554;
 
-  /* Amber palette */
   --color-amber-50: #fffbeb;
   --color-amber-100: #fef3c7;
   --color-amber-200: #fde68a;
@@ -72,7 +66,6 @@
   --color-amber-900: #78350f;
   --color-amber-950: #451a03;
 
-  /* Red palette */
   --color-red-50: #fef2f2;
   --color-red-100: #fee2e2;
   --color-red-200: #fecaca;
@@ -85,7 +78,6 @@
   --color-red-900: #7f1d1d;
   --color-red-950: #450a0a;
 
-  /* Orange palette */
   --color-orange-50: #fff7ed;
   --color-orange-100: #ffedd5;
   --color-orange-200: #fed7aa;
@@ -98,7 +90,6 @@
   --color-orange-900: #7c2d12;
   --color-orange-950: #431407;
 
-  /* Yellow palette */
   --color-yellow-50: #fefce8;
   --color-yellow-100: #fef9c3;
   --color-yellow-200: #fef08a;
@@ -111,7 +102,6 @@
   --color-yellow-900: #713f12;
   --color-yellow-950: #422006;
 
-  /* Cyan palette */
   --color-cyan-50: #ecfeff;
   --color-cyan-100: #cffafe;
   --color-cyan-200: #a5f3fc;
@@ -124,81 +114,6 @@
   --color-cyan-900: #164e63;
   --color-cyan-950: #083344;
 
-  /* ========================================
-     COLORS — Semantic (Context meanings)
-     ======================================== */
-
-  /* Background colors */
-  --color-bg-primary: var(--color-slate-950);
-  --color-bg-secondary: var(--color-slate-900);
-  --color-bg-tertiary: var(--color-slate-800);
-  --color-bg-card: var(--color-slate-900);
-  --color-bg-card-hover: var(--color-slate-800);
-  --color-bg-elevated: var(--color-slate-800);
-  --color-bg-overlay: rgba(2, 6, 23, 0.75);
-
-  /* Text colors */
-  --color-text-primary: var(--color-slate-50);
-  --color-text-secondary: var(--color-slate-400);
-  --color-text-muted: var(--color-slate-500);
-  --color-text-accent: var(--color-emerald-400);
-
-  /* Border colors */
-  --color-border-primary: var(--color-slate-800);
-  --color-border-secondary: var(--color-slate-700);
-  --color-border-subtle: rgba(100, 116, 139, 0.2);
-
-  /* Game colors — EA FC (Emerald/Green) */
-  --color-eafc-primary: var(--color-emerald-500);
-  --color-eafc-secondary: var(--color-emerald-400);
-  --color-eafc-muted: var(--color-emerald-600);
-  --color-eafc-glow: var(--color-emerald-400);
-  --color-eafc-surface: var(--color-emerald-950);
-  --color-eafc-subtle: rgba(16, 185, 129, 0.08);
-  --color-eafc-border: var(--color-emerald-500);
-
-  /* Game colors — TFT (Violet/Purple) */
-  --color-tft-primary: var(--color-violet-500);
-  --color-tft-secondary: var(--color-violet-400);
-  --color-tft-muted: var(--color-violet-600);
-  --color-tft-glow: var(--color-violet-400);
-  --color-tft-surface: var(--color-violet-950);
-  --color-tft-subtle: rgba(139, 92, 246, 0.08);
-  --color-tft-border: var(--color-violet-500);
-
-  /* CTA / Action colors */
-  --color-cta-primary: var(--color-emerald-500);
-  --color-cta-hover: var(--color-emerald-400);
-
-  /* Tag colors */
-  --color-tag-meta: var(--color-emerald-400);
-  --color-tag-off-meta: var(--color-orange-400);
-  --color-tag-iniciante: var(--color-blue-400);
-  --color-tag-competitivo: var(--color-red-400);
-  --color-tag-velocidade: var(--color-cyan-400);
-  --color-tag-fisico: var(--color-amber-400);
-  --color-tag-tecnico: var(--color-violet-400);
-  --color-tag-criativo: var(--color-pink-400);
-
-  /* Tier colors */
-  --color-tier-s: var(--color-emerald-400);
-  --color-tier-a: var(--color-blue-400);
-  --color-tier-b: var(--color-amber-400);
-  --color-tier-c: var(--color-orange-400);
-  --color-tier-d: var(--color-slate-400);
-
-  /* Status colors */
-  --color-success: var(--color-emerald-400);
-  --color-warning: var(--color-amber-400);
-  --color-error: var(--color-red-400);
-  --color-info: var(--color-blue-400);
-
-  /* Gold accent */
-  --color-gold: var(--color-amber-400);
-  --color-gold-light: var(--color-amber-300);
-  --color-gold-dark: var(--color-amber-600);
-
-  /* Pink (fallback for criativo tag) */
   --color-pink-50: #fdf2f8;
   --color-pink-100: #fce7f3;
   --color-pink-200: #fbcfe8;
@@ -212,12 +127,73 @@
   --color-pink-950: #500724;
 
   /* ========================================
+     CUSTOM TOKENS (namespaced so Tailwind doesn't skip them)
+     ======================================== */
+  --color-bg-primary: #020617;
+  --color-bg-secondary: #0f172a;
+  --color-bg-tertiary: #1e293b;
+  --color-bg-card: #0f172a;
+  --color-bg-card-hover: #1e293b;
+  --color-bg-elevated: #1e293b;
+  --color-bg-overlay: rgba(2, 6, 23, 0.75);
+  --color-bg-eafc: #10b981;
+  --color-bg-tft: #8b5cf6;
+
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-text-accent: #34d399;
+
+  --color-border-primary: #1e293b;
+  --color-border-secondary: #334155;
+  --color-border-subtle: rgba(100, 116, 139, 0.2);
+
+  --color-eafc-primary: #10b981;
+  --color-eafc-secondary: #34d399;
+  --color-eafc-muted: #059669;
+  --color-eafc-glow: #34d399;
+  --color-eafc-surface: #022c22;
+  --color-eafc-subtle: rgba(16, 185, 129, 0.08);
+  --color-eafc-border: #10b981;
+
+  --color-tft-primary: #8b5cf6;
+  --color-tft-secondary: #a78bfa;
+  --color-tft-muted: #7c3aed;
+  --color-tft-glow: #a78bfa;
+  --color-tft-surface: #2e1065;
+  --color-tft-subtle: rgba(139, 92, 246, 0.08);
+  --color-tft-border: #8b5cf6;
+
+  --color-cta-primary: #10b981;
+  --color-cta-hover: #34d399;
+
+  --color-tag-meta: #34d399;
+  --color-tag-off-meta: #fb923c;
+  --color-tag-iniciante: #60a5fa;
+  --color-tag-competitivo: #f87171;
+  --color-tag-velocidade: #22d3ee;
+  --color-tag-fisico: #fbbf24;
+  --color-tag-tecnico: #a78bfa;
+  --color-tag-criativo: #f472b6;
+
+  --color-tier-s: #34d399;
+  --color-tier-a: #60a5fa;
+  --color-tier-b: #fbbf24;
+  --color-tier-c: #fb923c;
+  --color-tier-d: #94a3b8;
+
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+  --color-info: #60a5fa;
+
+  --color-gold: #fbbf24;
+  --color-gold-light: #fcd34d;
+  --color-gold-dark: #d97706;
+
+  /* ========================================
      TYPOGRAPHY
      ======================================== */
-  --font-family-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
-  --font-family-mono: var(--font-mono), 'JetBrains Mono', 'Fira Code', monospace;
-
-  /* Major Third scale (1.25) */
   --font-size-xs: 0.75rem;
   --font-size-xs--line-height: 1rem;
   --font-size-sm: 0.875rem;
@@ -252,7 +228,7 @@
   --letter-spacing-wider: 0.05em;
 
   /* ========================================
-     SPACING (4px base scale)
+     SPACING
      ======================================== */
   --spacing-1: 0.25rem;
   --spacing-2: 0.5rem;
@@ -281,71 +257,227 @@
   --radius-full: 9999px;
 
   /* ========================================
-     SHADOWS (5 elevations + glows)
+     SHADOWS
      ======================================== */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
   --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-
-  /* Glow shadows */
   --shadow-glow-eafc: 0 0 20px rgba(16, 185, 129, 0.15), 0 0 40px rgba(16, 185, 129, 0.05);
   --shadow-glow-tft: 0 0 20px rgba(139, 92, 246, 0.15), 0 0 40px rgba(139, 92, 246, 0.05);
   --shadow-glow-gold: 0 0 20px rgba(251, 191, 36, 0.15), 0 0 40px rgba(251, 191, 36, 0.05);
-
-  /* Inner shadows */
   --shadow-inset: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 
   /* ========================================
-     Z-INDEX SCALE
-     ======================================== */
-  --z-base: 1;
-  --z-dropdown: 100;
-  --z-sticky: 200;
-  --z-overlay: 300;
-  --z-modal: 400;
-  --z-popover: 500;
-  --z-tooltip: 600;
-  --z-toast: 700;
-
-  /* ========================================
-     BORDER WIDTHS
-     ======================================== */
-  --border-width-hairline: 0.5px;
-  --border-width-thin: 1px;
-  --border-width-medium: 1.5px;
-  --border-width-thick: 2px;
-  --border-width-heavy: 4px;
-
-  /* ========================================
-     OPACITY
-     ======================================== */
-  --opacity-0: 0;
-  --opacity-5: 0.05;
-  --opacity-10: 0.1;
-  --opacity-15: 0.15;
-  --opacity-20: 0.2;
-  --opacity-25: 0.25;
-  --opacity-30: 0.3;
-  --opacity-40: 0.4;
-  --opacity-50: 0.5;
-  --opacity-60: 0.6;
-  --opacity-70: 0.7;
-  --opacity-75: 0.75;
-  --opacity-80: 0.8;
-  --opacity-90: 0.9;
-  --opacity-100: 1;
-
-  /* ========================================
-     ANIMATION TIMING
+     ANIMATION
      ======================================== */
   --duration-fast: 100ms;
   --duration-normal: 200ms;
   --duration-slow: 300ms;
   --duration-slower: 500ms;
 
-  /* Easing curves */
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ============================================
+   EXPORT: make all custom tokens available
+   at runtime via body { --var: value }
+   ============================================ */
+
+body {
+  /* Backgrounds */
+  --color-bg-primary: #020617;
+  --color-bg-secondary: #0f172a;
+  --color-bg-tertiary: #1e293b;
+  --color-bg-card: #0f172a;
+  --color-bg-card-hover: #1e293b;
+  --color-bg-elevated: #1e293b;
+  --color-bg-overlay: rgba(2, 6, 23, 0.75);
+  --color-bg-eafc: #10b981;
+  --color-bg-tft: #8b5cf6;
+
+  /* Text */
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-text-accent: #34d399;
+
+  /* Borders */
+  --color-border-primary: #1e293b;
+  --color-border-secondary: #334155;
+  --color-border-subtle: rgba(100, 116, 139, 0.2);
+
+  /* EA FC */
+  --color-eafc-primary: #10b981;
+  --color-eafc-secondary: #34d399;
+  --color-eafc-muted: #059669;
+  --color-eafc-glow: #34d399;
+  --color-eafc-surface: #022c22;
+  --color-eafc-subtle: rgba(16, 185, 129, 0.08);
+  --color-eafc-border: #10b981;
+
+  /* TFT */
+  --color-tft-primary: #8b5cf6;
+  --color-tft-secondary: #a78bfa;
+  --color-tft-muted: #7c3aed;
+  --color-tft-glow: #a78bfa;
+  --color-tft-surface: #2e1065;
+  --color-tft-subtle: rgba(139, 92, 246, 0.08);
+  --color-tft-border: #8b5cf6;
+
+  /* CTA */
+  --color-cta-primary: #10b981;
+  --color-cta-hover: #34d399;
+
+  /* Tags */
+  --color-tag-meta: #34d399;
+  --color-tag-off-meta: #fb923c;
+  --color-tag-iniciante: #60a5fa;
+  --color-tag-competitivo: #f87171;
+  --color-tag-velocidade: #22d3ee;
+  --color-tag-fisico: #fbbf24;
+  --color-tag-tecnico: #a78bfa;
+  --color-tag-criativo: #f472b6;
+
+  /* Tiers */
+  --color-tier-s: #34d399;
+  --color-tier-a: #60a5fa;
+  --color-tier-b: #fbbf24;
+  --color-tier-c: #fb923c;
+  --color-tier-d: #94a3b8;
+
+  /* Status */
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+  --color-info: #60a5fa;
+
+  /* Gold */
+  --color-gold: #fbbf24;
+  --color-gold-light: #fcd34d;
+  --color-gold-dark: #d97706;
+
+  /* Primitives (so they can be referenced anywhere) */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-200: #a7f3d0;
+  --color-emerald-300: #6ee7b7;
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+  --color-emerald-800: #065f46;
+  --color-emerald-900: #064e3b;
+  --color-emerald-950: #022c22;
+
+  --color-violet-50: #f5f3ff;
+  --color-violet-100: #ede9fe;
+  --color-violet-200: #ddd6fe;
+  --color-violet-300: #c4b5fd;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #8b5cf6;
+  --color-violet-600: #7c3aed;
+  --color-violet-700: #6d28d9;
+  --color-violet-800: #5b21b6;
+  --color-violet-900: #4c1d95;
+  --color-violet-950: #2e1065;
+
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
+  --color-blue-950: #172554;
+
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-300: #fcd34d;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  --color-amber-700: #b45309;
+  --color-amber-800: #92400e;
+  --color-amber-900: #78350f;
+  --color-amber-950: #451a03;
+
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-300: #fca5a5;
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
+  --color-red-900: #7f1d1d;
+  --color-red-950: #450a0a;
+
+  --color-pink-50: #fdf2f8;
+  --color-pink-100: #fce7f3;
+  --color-pink-200: #fbcfe8;
+  --color-pink-300: #f9a8d4;
+  --color-pink-400: #f472b6;
+  --color-pink-500: #ec4899;
+  --color-pink-600: #db2777;
+  --color-pink-700: #be185d;
+  --color-pink-800: #9d174d;
+  --color-pink-900: #831843;
+  --color-pink-950: #500724;
+
+  --color-cyan-50: #ecfeff;
+  --color-cyan-100: #cffafe;
+  --color-cyan-200: #a5f3fc;
+  --color-cyan-300: #67e8f9;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+  --color-cyan-700: #0e7490;
+  --color-cyan-800: #155e75;
+  --color-cyan-900: #164e63;
+  --color-cyan-950: #083344;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  --shadow-glow-eafc: 0 0 20px rgba(16, 185, 129, 0.15), 0 0 40px rgba(16, 185, 129, 0.05);
+  --shadow-glow-tft: 0 0 20px rgba(139, 92, 246, 0.15), 0 0 40px rgba(139, 92, 246, 0.05);
+  --shadow-glow-gold: 0 0 20px rgba(251, 191, 36, 0.15), 0 0 40px rgba(251, 191, 36, 0.05);
+  --shadow-inset: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+
+  /* Animation */
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 500ms;
+
   --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
@@ -354,17 +486,28 @@
   --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  /* ========================================
-     BACKDROP
-     ======================================== */
-  --backdrop-blur-sm: blur(4px);
-  --backdrop-blur-md: blur(8px);
-  --backdrop-blur-lg: blur(16px);
-  --backdrop-blur-xl: blur(24px);
+  /* Radii */
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+  --radius-full: 9999px;
 
-  /* ========================================
-     BACKDROP BLEND
-     ======================================== */
-  --blend-overlay: overlay;
-  --blend-multiply: multiply;
+  /* Spacing */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
 }
