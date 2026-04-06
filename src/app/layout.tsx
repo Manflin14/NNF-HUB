@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -28,9 +29,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--text-primary)]">
         <Navbar />
         <main className="flex-1">{children}</main>
-        <footer className="border-t border-[var(--border)] py-6 text-center text-sm text-[var(--text-secondary)]">
-          NNF HUB &copy; 2026 — Guia não oficial de EA FC 26
-        </footer>
+        <Footer />
       </body>
     </html>
   )
