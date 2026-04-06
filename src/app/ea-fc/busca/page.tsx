@@ -68,6 +68,7 @@ function BuildSearchContent() {
 
   return (
     <div className="space-y-6">
+      {/* Search */}
       <Input
         placeholder="Busque por nome, posição, play style, tag..."
         value={query}
@@ -78,21 +79,21 @@ function BuildSearchContent() {
         className="text-base"
       />
 
+      {/* Tag filters */}
       <div>
         <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">Tags</label>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => { setSelectedTag(null); updateURL({ tag: null }) }}
-            className={`px-3 py-1.5 rounded-full text-sm transition-colors border ${
+            className={`px-3 py-1.5 rounded-full text-sm border transition-all duration-200 ${
               !selectedTag
-                ? 'border-[var(--color-cta-green)]/40 bg-[var(--color-cta-green)]/20 text-[var(--color-cta-green)]'
-                : 'border-[var(--color-border-primary)] bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)]'
+                ? 'border-[var(--color-emerald-500)]/40 bg-[var(--color-emerald-500)]/20 text-[var(--color-emerald-400)]'
+                : 'border-[var(--color-border-primary)] bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
             }`}
           >
             Todas
           </button>
           {ALL_TAGS.map((tag) => {
-            const cfg = getTagCfg(tag)
             const isActive = selectedTag === tag
             return (
               <button
@@ -101,28 +102,29 @@ function BuildSearchContent() {
                   setSelectedTag(isActive ? null : tag)
                   updateURL({ tag: isActive ? null : tag })
                 }}
-                className="px-3 py-1.5 rounded-full text-sm border transition-colors"
-                style={{
-                  backgroundColor: isActive ? `${cfg.color}15` : 'var(--color-bg-tertiary)',
-                  color: isActive ? cfg.color : 'var(--color-text-secondary)',
-                  borderColor: isActive ? `${cfg.color}50` : 'var(--color-border-primary)',
-                }}
+                className={`px-3 py-1.5 rounded-full text-sm border transition-all duration-200 ${
+                  isActive
+                    ? 'border-[var(--color-tag-meta)]/40 bg-[var(--color-bg-tertiary)]/80'
+                    : 'border-[var(--color-border-primary)] bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
+                }`}
+                style={isActive ? { borderColor: 'var(--color-tag-meta, var(--color-emerald-400))', color: 'var(--color-tag-meta, var(--color-emerald-400))' } : {}}
               >
-                {cfg.label}
+                <TagBadge tag={tag} />
               </button>
             )
           })}
         </div>
       </div>
 
+      {/* Position filters */}
       <div>
         <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">Posições</label>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => { setSelectedPos(null); updateURL({ pos: null }) }}
-            className={`px-3 py-1.5 rounded-lg text-sm transition-colors border ${
+            className={`px-3 py-1.5 rounded-lg text-sm border transition-colors ${
               !selectedPos
-                ? 'border-[var(--color-cta-green)]/40 bg-[var(--color-cta-green)]/20 text-[var(--color-cta-green)]'
+                ? 'border-[var(--color-emerald-500)]/40 bg-[var(--color-emerald-500)]/20 text-[var(--color-emerald-400)]'
                 : 'border-[var(--color-border-primary)] bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)]'
             }`}
           >
@@ -138,19 +140,20 @@ function BuildSearchContent() {
                   setSelectedPos(isActive ? null : pos)
                   updateURL({ pos: isActive ? null : pos })
                 }}
-                className={`px-3 py-1.5 rounded-lg text-sm transition-colors border ${
+                className={`px-3 py-1.5 rounded-lg text-sm border transition-colors ${
                   isActive
-                    ? 'border-[var(--color-border-eafc)] bg-[var(--color-bg-eafc)]/20 text-[var(--color-border-eafc)]'
-                    : 'border-[var(--color-border-primary)] bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)]'
+                    ? 'border-[var(--color-emerald-500)] bg-[var(--color-emerald-500)]/20 text-[var(--color-emerald-400)]'
+                    : 'border-[var(--color-border-primary)] bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
                 }`}
               >
-                {config.icon} {pos}
+                <span className="mr-1">{config.icon}</span> {pos}
               </button>
             )
           })}
         </div>
       </div>
 
+      {/* Results */}
       <div>
         <p className="text-sm text-[var(--color-text-muted)] mb-4">
           {results.length} build{results.length !== 1 ? 's' : ''} encontrada{results.length !== 1 ? 's' : ''}
@@ -162,15 +165,15 @@ function BuildSearchContent() {
               <Link
                 key={build.id}
                 href={`/posicao/${build.slug}`}
-                className="group flex items-start gap-4 rounded-xl border border-[var(--color-border-primary)] bg-[var(--color-bg-card)] p-5 transition-all duration-300 hover:border-[var(--color-border-eafc)] hover:bg-[var(--color-bg-card-hover)]"
+                className="group flex items-start gap-4 rounded-xl border border-[var(--color-border-primary)] bg-[var(--color-bg-card)] p-5 transition-all duration-300 hover:border-[var(--color-emerald-500)]/50 hover:bg-[var(--color-bg-card-hover)] hover:shadow-lg"
               >
-                <span className="text-2xl mt-0.5">{posConfig.icon}</span>
+                <span className="text-2xl mt-0.5 shrink-0">{posConfig.icon}</span>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-bold text-[var(--color-text-primary)] group-hover:text-[var(--color-text-accent)]">
+                    <h3 className="font-bold text-[var(--color-text-primary)] group-hover:text-[var(--color-emerald-400)] transition-colors">
                       {build.name}
                     </h3>
-                    <span className="px-2 py-0.5 rounded bg-[var(--color-bg-tertiary)] text-xs font-mono text-[var(--color-text-secondary)]">
+                    <span className="px-2 py-0.5 rounded-md bg-[var(--color-bg-tertiary)] text-xs font-mono text-[var(--color-text-secondary)]">
                       {build.position}
                     </span>
                   </div>
@@ -183,16 +186,20 @@ function BuildSearchContent() {
                     ))}
                   </div>
                 </div>
-                <span className="text-sm font-mono text-[var(--color-cta-green)] shrink-0">
+                <span className="text-sm font-mono text-[var(--color-emerald-400)] shrink-0">
                   ⬆ {build.votes}
                 </span>
               </Link>
             )
           })}
           {results.length === 0 && (
-            <p className="text-center py-8 text-[var(--color-text-muted)]">
-              Nenhuma build encontrada para os filtros selecionados.
-            </p>
+            <div className="text-center py-12">
+              <div className="text-4xl mb-3">🔍</div>
+              <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-1">Nenhuma build encontrada</h3>
+              <p className="text-sm text-[var(--color-text-muted)]">
+                Tente ajustar os filtros para encontrar resultados.
+              </p>
+            </div>
           )}
         </div>
       </div>
@@ -203,24 +210,17 @@ function BuildSearchContent() {
 export default function EAFCSearchPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-8">
-      <h1 className="text-2xl font-bold text-[var(--color-text-primary)] mb-8">🔍 Buscar Builds — EA FC 26</h1>
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-[var(--color-text-primary)] flex items-center gap-2">
+          🔍 Buscar Builds — EA FC 26
+        </h1>
+        <p className="text-[var(--color-text-secondary)] mt-2">
+          Encontre a build perfeita com filtros por tag, posição e nome.
+        </p>
+      </div>
       <Suspense fallback={<p className="text-[var(--color-text-muted)]">Carregando...</p>}>
         <BuildSearchContent />
       </Suspense>
     </div>
   )
-}
-
-function getTagCfg(tag: Tag) {
-  const cfg: Record<Tag, { label: string; color: string }> = {
-    meta: { label: 'Meta', color: 'var(--color-meta)' },
-    'off-meta': { label: 'Off-Meta', color: 'var(--color-off-meta)' },
-    iniciante: { label: 'Iniciante', color: 'var(--color-iniciante)' },
-    competitivo: { label: 'Competitivo', color: 'var(--color-competitivo)' },
-    velocidade: { label: 'Velocidade', color: 'var(--color-velocidade)' },
-    físico: { label: 'Físico', color: 'var(--color-fisico)' },
-    técnico: { label: 'Técnico', color: 'var(--color-tecnico)' },
-    criativo: { label: 'Criativo', color: 'var(--color-criativo)' },
-  }
-  return cfg[tag] ?? { label: tag, color: 'var(--color-text-muted)' }
 }

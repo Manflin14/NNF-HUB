@@ -1,15 +1,172 @@
 @import 'tailwindcss';
+@import './tokens.css';
 
-body {
-  font-family: var(--font-sans), system-ui, sans-serif;
-  background: var(--color-bg-primary);
-  color: var(--color-text-primary);
+/* ============================================
+   BASE / BODY
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
 }
 
+body {
+  font-family: var(--font-family-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-slate-700);
+  border-radius: 9999px;
+
+  &:hover {
+    background: var(--color-slate-600);
+  }
+}
+
+/* ============================================
+   SELECTION
+   ============================================ */
+
+::selection {
+  background: var(--color-emerald-500);
+  color: var(--color-slate-950);
+}
+
+/* ============================================
+   FOCUS VISIBLE RING
+   ============================================ */
+
+*:focus-visible {
+  outline: 2px solid var(--color-emerald-500);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   KEYFRAMES
+   ============================================ */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulseSoft {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.65; }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0  5px   rgba(16, 185, 129, 0.2),
+                           0 0 15px   rgba(16, 185, 129, 0.08); }
+  50%      { box-shadow: 0 0 12px   rgba(16, 185, 129, 0.35),
+                           0 0 30px   rgba(16, 185, 129, 0.15); }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-cta-green), var(--color-text-accent));
+  background: linear-gradient(135deg, var(--color-emerald-400), var(--color-violet-400));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+.glass {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-card {
+  background: rgba(30, 41, 59, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: var(--border-width-thin) solid var(--color-border-subtle);
+}
+
+.hover-lift {
+  transition: transform var(--duration-normal) var(--ease-default),
+              box-shadow var(--duration-normal) var(--ease-default);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+
+  &.in-view {
+    animation: fadeInUp var(--duration-slower) var(--ease-out) both;
+  }
+}
+
+/* Skeleton shimmer helper */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-slate-800) 25%,
+    var(--color-slate-700) 50%,
+    var(--color-slate-800) 75%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.8s infinite var(--duration-slower);
+}
+
+/* ============================================
+   PRINT
+   ============================================ */
+
+@media print {
+  *, *::before, *::after {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  nav,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+}

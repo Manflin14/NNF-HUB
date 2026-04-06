@@ -67,6 +67,7 @@ function TFTSearchContent() {
 
   return (
     <div className="space-y-6">
+      {/* Search */}
       <Input
         placeholder="Busque por nome, campeão, sinergia, tag..."
         value={query}
@@ -77,14 +78,15 @@ function TFTSearchContent() {
         className="text-base"
       />
 
+      {/* Tier filters */}
       <div>
         <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">Tier</label>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => { setSelectedTier(null); updateURL({ tier: null }) }}
-            className={`px-3 py-1.5 rounded-lg text-sm transition-colors border ${
+            className={`px-3 py-1.5 rounded-lg text-sm border transition-colors ${
               !selectedTier
-                ? 'border-[var(--color-cta-green)]/40 bg-[var(--color-cta-green)]/20 text-[var(--color-cta-green)]'
+                ? 'border-[var(--color-violet-500)]/40 bg-[var(--color-violet-500)]/20 text-[var(--color-violet-400)]'
                 : 'border-[var(--color-border-primary)] bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)]'
             }`}
           >
@@ -97,18 +99,20 @@ function TFTSearchContent() {
                 setSelectedTier(tier === selectedTier ? null : tier)
                 updateURL({ tier: tier === selectedTier ? null : tier })
               }}
-              className={`px-3 py-1.5 rounded-lg text-sm transition-colors border ${
+              className={`px-3 py-1.5 rounded-lg text-sm border transition-colors ${
                 selectedTier === tier
-                  ? 'border-[var(--color-border-tft)] bg-[var(--color-bg-tft)]/20 text-[var(--color-border-tft)]'
-                  : 'border-[var(--color-border-primary)] bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)]'
+                  ? 'border-[var(--color-violet-500)] bg-[var(--color-violet-500)]/20'
+                  : 'border-[var(--color-border-primary)] bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
               }`}
+              style={selectedTier === tier ? { color: `var(--color-tier-${tier.toLowerCase()})` } : {}}
             >
-              Tier {tier}
+              <span className="mr-1">Tier</span>{tier}
             </button>
           ))}
         </div>
       </div>
 
+      {/* Difficulty filters */}
       <div>
         <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">Dificuldade</label>
         <div className="flex flex-wrap gap-2">
@@ -119,10 +123,10 @@ function TFTSearchContent() {
                 setSelectedDiff(diff === selectedDiff ? null : diff)
                 updateURL({ diff: diff === selectedDiff ? null : diff })
               }}
-              className={`px-3 py-1.5 rounded-lg text-sm transition-colors border ${
+              className={`px-3 py-1.5 rounded-lg text-sm border transition-colors ${
                 selectedDiff === diff
-                  ? 'border-[var(--color-cta-green)]/40 bg-[var(--color-cta-green)]/20 text-[var(--color-cta-green)]'
-                  : 'border-[var(--color-border-primary)] bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)]'
+                  ? 'border-[var(--color-emerald-500)]/40 bg-[var(--color-emerald-500)]/20 text-[var(--color-emerald-400)]'
+                  : 'border-[var(--color-border-primary)] bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
               }`}
             >
               {diff}
@@ -131,6 +135,7 @@ function TFTSearchContent() {
         </div>
       </div>
 
+      {/* Results */}
       <div>
         <p className="text-sm text-[var(--color-text-muted)] mb-4">
           {results.length} comp{results.length !== 1 ? 's' : ''} encontrada{results.length !== 1 ? 's' : ''}
@@ -140,18 +145,19 @@ function TFTSearchContent() {
             <Link
               key={comp.id}
               href={`/tft/${comp.slug}`}
-              className="group flex items-start gap-4 rounded-xl border border-[var(--color-border-primary)] bg-[var(--color-bg-card)] p-5 transition-all duration-300 hover:border-[var(--color-border-tft)] hover:bg-[var(--color-bg-card-hover)]"
+              className="group flex items-start gap-4 rounded-xl border border-[var(--color-border-primary)] bg-[var(--color-bg-card)] p-5 transition-all duration-300 hover:border-[var(--color-violet-500)]/50 hover:bg-[var(--color-bg-card-hover)] hover:shadow-lg"
             >
               <div className="mt-1">
-                <TierTag tier={comp.tier} />
+                <TierTag tier={comp.tier} size="md" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <h3 className="font-bold text-[var(--color-text-primary)] group-hover:text-[var(--color-text-accent)]">
+                  <h3 className="font-bold text-[var(--color-text-primary)] group-hover:text-[var(--color-violet-400)] transition-colors">
                     {comp.name}
                   </h3>
                   {comp.trending && (
-                    <span className="text-xs px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30">
+                    <span className="flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-red-500/15 text-red-400 border border-red-500/25">
+                      <span className="size-1.5 rounded-full bg-red-400 animate-pulse" />
                       HOT
                     </span>
                   )}
@@ -161,14 +167,14 @@ function TFTSearchContent() {
                 </p>
                 <div className="flex flex-wrap gap-1">
                   {comp.coreChampions.slice(0, 3).map((champ) => (
-                    <span key={champ.name} className="px-2 py-0.5 rounded bg-[var(--color-bg-tertiary)] text-xs text-[var(--color-text-secondary)]">
+                    <span key={champ.name} className="px-2 py-0.5 rounded-md bg-[var(--color-bg-tertiary)] text-xs text-[var(--color-text-secondary)]">
                       {champ.name} ({champ.cost}💰)
                     </span>
                   ))}
                 </div>
               </div>
               <div className="text-right shrink-0">
-                <div className="text-sm font-mono text-[var(--color-cta-green)]">⬆ {comp.votes}</div>
+                <div className="text-sm font-mono text-[var(--color-violet-400)]">⬆ {comp.votes}</div>
                 <div className="text-xs text-[var(--color-text-muted)] mt-1">
                   Patch {comp.patch}
                 </div>
@@ -176,9 +182,13 @@ function TFTSearchContent() {
             </Link>
           ))}
           {results.length === 0 && (
-            <p className="text-center py-8 text-[var(--color-text-muted)]">
-              Nenhuma comp encontrada para os filtros selecionados.
-            </p>
+            <div className="text-center py-12">
+              <div className="text-4xl mb-3">🔍</div>
+              <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-1">Nenhuma comp encontrada</h3>
+              <p className="text-sm text-[var(--color-text-muted)]">
+                Tente ajustar os filtros para encontrar resultados.
+              </p>
+            </div>
           )}
         </div>
       </div>
@@ -189,7 +199,14 @@ function TFTSearchContent() {
 export default function TFTSearchPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-8">
-      <h1 className="text-2xl font-bold text-[var(--color-text-primary)] mb-8">🔍 Buscar Comps — TFT Set 16</h1>
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-[var(--color-text-primary)] flex items-center gap-2">
+          🔍 Buscar Comps — TFT Set 16
+        </h1>
+        <p className="text-[var(--color-text-secondary)] mt-2">
+          Encontre a composição perfeita com filtros por tier, dificuldade e nome.
+        </p>
+      </div>
       <Suspense fallback={<p className="text-[var(--color-text-muted)]">Carregando...</p>}>
         <TFTSearchContent />
       </Suspense>
