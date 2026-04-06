@@ -1,70 +1,156 @@
-# NNF HUB
+# NNF HUB — Builds & Estratégias Competitivas
 
-Guia definitivo para builds meta do **EA FC 26 Pro Clubs** e composições do **TFT Set 16** (Patch 16.6).
+Hub profissional de builds, composições e estratégias para jogos competitivos.
 
-Atributos, Play Styles, posicionamento de board, progressão por nível e dicas estratégicas para cada jogo — tudo atualizado e centralizado.
+## Jogos Suportados
+
+- **EA FC 26 Pro Clubs** — Builds otimizados por posição com atributos, Play Styles, skill points e dicas de meta
+- **Teamfight Tactics (Set 16)** — Composições meta, tier lists, itens BIS, posicionamento e guias por fase
 
 ## Stack
 
-- **Next.js 16** com App Router e Static Export
-- **React 19** + **TypeScript**
-- **Tailwind CSS 4** — design system com variáveis CSS customizadas
-- **ESLint** — linting do código
+- **Frontend**: Next.js 15 (App Router) + React 19
+- **Estilização**: TailwindCSS 4 com design system customizado (CSS variables)
+- **Backend**: Next.js API Routes (serverless)
+- **Database**: MongoDB + Mongoose
+- **Autenticação**: JWT via cookies (httpOnly) com `jose`
+- **Validação**: Zod
+- **Linguagem**: TypeScript (strict)
 
-## Como rodar localmente
+## Como Rodar
 
 ```bash
-# Instalar dependências
+# 1. Instalar dependências
 npm install
 
-# Modo desenvolvimento (localhost:3000)
+# 2. Copiar env vars
+cp .env.example .env
+# Edite MONGODB_URI e JWT_SECRET
+
+# 3. Rodar em desenvolvimento (com Turbopack)
 npm run dev
 
-# Build estático (saída em /out)
+# 4. Build de produção
 npm run build
-
-# Lint
-npm run lint
+npm start
 ```
 
-## Build para produção
-
-O projeto gera um site 100% estático com `output: 'export'`. A pasta `out/` pode ser hospedada em qualquer place (GitHub Pages, Vercel, Netlify, etc.).
-
-## Estrutura de arquivos
+## Estrutura do Projeto
 
 ```
 src/
-├── app/                    # Rotas do Next.js
-│   ├── page.tsx            # Home — landing com links dos jogos
-│   ├── ea-fc/page.tsx      # Página de índice de posições EA FC
-│   ├── posicao/[slug]/     # Detalhe de uma posição (builds, atributos)
-│   ├── tft/page.tsx        # Índice de composições TFT
-│   └── tft/[id]/           # Detalhe de uma composição TFT
-├── components/             # Componentes React reutilizáveis
-│   ├── BuildCard.tsx       # Card de build EA FC
-│   ├── AttributeGroups.tsx # Barras de atributos individuais
-│   ├── ProgressionTable.tsx# Tabela de progressão por nível
-│   ├── PlayStyleBadge.tsx  # Badge colorido de Play Style
+├── app/                          # Next.js App Router (rotas = páginas + API)
+│   ├── layout.tsx                # Root layout (Navbar + Footer + Fonts)
+│   ├── page.tsx                  # Home — Landing dashboard
+│   ├── ea-fc/
+│   │   ├── page.tsx              # Página principal EA FC com índice de builds
+│   │   └── busca/page.tsx        # Busca de builds com filtros
+│   ├── posicao/[slug]/page.tsx   # Build detail (slug dinâmico)
+│   ├── tft/
+│   │   ├── page.tsx              # Página principal TFT com tier list
+│   │   └── busca/page.tsx        # Busca de comps com filtros
+│   ├── tft/[id]/page.tsx         # Comp detail (slug dinâmico)
+│   ├── login/page.tsx            # Login
+│   ├── register/page.tsx         # Cadastro
+│   ├── dashboard/page.tsx        # Dashboard com estatísticas
+│   ├── perfil/[id]/page.tsx      # Profile do usuário
+│   └── api/                      # API Routes (REST)
+│       ├── auth/
+│       │   ├── login/route.ts    # POST — Login com JWT cookie
+│       │   ├── register/route.ts # POST — Registro com bcrypt
+│       │   ├── session/route.ts  # GET — Verifica sessão atual
+│       │   └── logout/route.ts   # POST — Logout (delete cookie)
+│       ├── builds/route.ts       # GET — Lista builds com filtros
+│       ├── builds/[id]/like/     # POST — Votar em build
+│       ├── builds/[id]/comments/ # GET/POST — Comentários
+│       ├── tft-comps/route.ts    # GET — Lista comps com filtros
+│       ├── tft-comps/[id]/like/  # POST — Votar em comp
+│       └── search/route.ts       # GET — Busca global
+├── components/
+│   ├── layout/
+│   │   ├── Navbar.tsx            # Header com navegação + auth
+│   │   ├── GameSidebar.tsx       # Sidebar de navegação por jogo
+│   │   └── Footer.tsx            # Footer com links
+│   ├── ui/                       # Primitive UI components
+│   │   ├── Button.tsx            # Button com variants (primary/secondary/ghost/danger)
+│   │   ├── Input.tsx             # Input com label, icon, error
+│   │   ├── TagBadge.tsx          # Badge de tags (meta, competitivo, etc.)
+│   │   ├── TierTag.tsx           # Badge de tier (S/A/B/C/D)
+│   │   ├── GameCard.tsx          # Card de jogo na home
+│   │   └── Breadcrumbs.tsx       # Navegação breadcrumb
+│   ├── ea-fc/
+│   │   ├── BuildCard.tsx         # Card de build no índice
+│   │   └── BuildDetail.tsx       # Build detail com tabs
 │   └── tft/
-│       ├── CompCard.tsx    # Card de composição TFT
-│       └── TFTBoard.tsx    # Board hexagonal de posicionamento
-├── data/                   # Dados estáticos (builds, comps)
-│   ├── builds.ts           # 8 posições × 2 builds = 16 builds
-│   └── tft-comps.ts        # 9 composições meta
-├── lib/
-│   └── tokens.ts           # Design tokens (cores, labels centralizados)
-└── types/
-    ├── index.ts            # Tipos EA FC (Position, Build, etc.)
-    └── tft.ts              # Tipos TFT (TFTComp, TFTChampion, etc.)
+│       ├── CompCard.tsx          # Card de comp no índice
+│       ├── CompDetail.tsx        # Comp detail (sinergias, itens)
+│       └── TFTHexBoard.tsx       # Board hex de posicionamento
+├── data/                         # Dados estáticos (seed data)
+│   ├── builds.ts                 # Builds de EA FC Pro Clubs
+│   └── tft-comps.ts              # Composições TFT
+├── hooks/                        # React hooks customizados
+│   ├── useAuth.ts                # Auth state + login/register/logout
+│   ├── useLocalStorage.ts        # Persistência local genérica
+│   └── useDebounce.ts            # Debounce para busca
+├── lib/                          # Core utilities
+│   ├── db.ts                     # MongoDB connection singleton
+│   ├── auth.ts                   # JWT create/verify/session
+│   └── validation.ts             # Zod schemas
+├── models/                       # Mongoose schemas
+│   ├── index.ts                  # Model registration
+│   ├── User.ts                   # Schema do usuário
+│   ├── Build.ts                  # Schema de build EA FC
+│   ├── TFTComp.ts               # Schema de comp TFT
+│   └── Comment.ts               # Schema de comentário
+├── types/                        # TypeScript type definitions
+│   ├── index.ts                  # Types EA FC + User + Search
+│   └── tft.ts                    # Types TFT
+├── utils/
+│   └── helpers.ts                # Slugify, configs, formatters
+└── styles/
+    └── globals.css               # TailwindCSS + tema customizado + animações
 ```
 
-## Deploy em GitHub Pages
+## Banco de Dados
 
-1. Configure `NEXT_PUBLIC_BASE_PATH=/nome-do-repo` no `.env`
-2. Rode `npm run build`
-3. Rode o workflow de deploy (o `out/` vai para a branch `gh-pages`)
+### MongoDB — Schemas Principais
+
+**User**: username, email, passwordHash, avatar, level, experience, reputation, favorites[], role
+
+**Build**: name, slug, position, game, height, weight, archetype, preferredFoot, skillPoints, maxRating, attributes, playStyles[], playStylePlus[], description, tips[], tags[], votes
+
+**TFTComp**: name, slug, tier, patch, difficulty, description, coreChampions[], synergies[], carryItems, positioning[], guide{early,mid,late}, augments[], votes, trending, tags
+
+**Comment**: contentId, contentType, userId, username, content, votes
+
+## Design System
+
+Tema escuro com variáveis CSS customizadas (`src/styles/globals.css`):
+- **Game colors**: Verde (EA FC), Roxo (TFT)
+- **Tier colors**: S=Vermelho, A=Laranja, B=Amarelo, C=Azul, D=Cinza
+- **Tag colors**: Meta=Verde, Off-Meta=Laranja, Competitivo=Vermelho, etc.
+- **Typography**: Inter (sans) + JetBrains Mono (code)
+
+## Expansão Futura
+
+- Adicionar novo jogo: criar pasta `src/app/{game}/`, adicionar ao `GAMES` em `utils/helpers.ts`
+- Adicionar nova build: adicionar entry em `src/data/builds.ts`
+- Adicionar nova comp: adicionar entry em `src/data/tft-comps.ts`
+- O sistema de módulos é plug-and-play por design
+
+## Deploy
+
+**Vercel** (recomendado):
+```bash
+npx vercel
+```
+
+**Variáveis de ambiente**:
+- `MONGODB_URI` — conexão MongoDB (mongo atlas, etc.)
+- `JWT_SECRET` — chave secreta para JWT production
+- `NODE_ENV=production`
 
 ## Licença
 
-Projeto não oficial — não afiliado à EA Sports, Riot Games ou qualquer outra empresa. Feito pela comunidade, para a comunidade.
+Projeto não oficial — não afiliado à EA Sports, Riot Games ou qualquer outra empresa.
+Feito pela comunidade, para a comunidade.

@@ -1,125 +1,106 @@
-import type { Metadata } from 'next'
-import { comps } from '@/data/tft-comps'
+import Link from 'next/link'
+import GameSidebar from '@/components/layout/GameSidebar'
 import CompCard from '@/components/tft/CompCard'
-import type { TFTTier } from '@/types/tft'
+import TierTag from '@/components/ui/TierTag'
+import { tftComps } from '@/data/tft-comps'
+import { TFTTier } from '@/types/tft'
 
-export const metadata: Metadata = {
-  title: 'TFT Set 16 — NNF HUB',
-  description: 'Melhores composições meta do TFT Set 16 no patch 16.6. Tier list, campeões, itens e dicas.',
-}
+const SIDEBAR_LINKS = [
+  { label: 'Todas Comps', href: '/tft', icon: '📋' },
+  { label: '🅾️ Tier S', href: '/tft#tier-S', icon: '' },
+  { label: '🅰️ Tier A', href: '/tft#tier-A', icon: '' },
+  { label: '🅱️ Tier B', href: '/tft#tier-B', icon: '' },
+  { label: 'Buscar Comps', href: '/tft/busca', icon: '🔍' },
+  { label: 'Guia de Macro', href: '/tft/guia-macro', icon: '📖' },
+]
 
-const tiers: TFTTier[] = ['S', 'A', 'B']
-
-const tierLabels: Record<TFTTier, string> = {
-  S: 'S — Dominante',
-  A: 'A — Muito Forte',
-  B: 'B — Sólido',
-  C: 'C — Situacional',
-}
-
-const tierColors: Record<TFTTier, string> = {
-  S: '#f59e0b',
-  A: '#00d4aa',
-  B: '#3b82f6',
-  C: '#6b7280',
-}
+const TIER_ORDER: TFTTier[] = ['S', 'A', 'B', 'C', 'D']
 
 export default function TFTPage() {
-  const totalComps = comps.length
-  const sCount = comps.filter((c) => c.tier === 'S').length
-  const aCount = comps.filter((c) => c.tier === 'A').length
+  const tierGroups = TIER_ORDER.map(tier => ({
+    tier,
+    comps: tftComps.filter(c => c.tier === tier),
+  })).filter(g => g.comps.length > 0)
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 py-10">
-      {/* Header */}
-      <section className="mb-12 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/30 bg-[var(--accent-dim)] px-4 py-1.5 text-sm text-[var(--accent)] mb-6">
-          <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
-          Set 16 — Patch 16.6
-        </div>
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
-          Guia Meta{' '}
-          <span className="text-[var(--accent)]">TFT</span>
-        </h1>
-        <p className="mx-auto max-w-xl text-lg text-[var(--text-secondary)] leading-relaxed">
-          As melhores composições do Set 16 no patch 16.6. Campeões, itens, traits e dicas para subir de elo.
-        </p>
+    <div className="mx-auto max-w-7xl px-4 py-8">
+      <div className="flex gap-8">
+        <GameSidebar
+          title="Teamfight Tactics"
+          links={SIDEBAR_LINKS}
+          accentColor="var(--color-border-tft)"
+          gameRoute="/tft"
+        />
 
-        {/* Stats */}
-        <div className="mt-8 inline-flex items-center gap-8 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-8 py-4">
-          <div className="text-center">
-            <p className="text-2xl font-bold text-[var(--text-primary)]">{totalComps}</p>
-            <p className="text-xs text-[var(--text-secondary)] mt-0.5">Comps</p>
+        <div className="flex-1 min-w-0">
+          {/* HEADER */}
+          <div className="mb-8">
+            <h1 className="text-3xl font-black text-[var(--color-text-primary)]">
+              <span className="text-[var(--color-border-tft)]">♟️</span> TFT Set 16
+            </h1>
+            <p className="mt-2 text-[var(--color-text-secondary)]">
+              Composições meta para o Patch 16.6. Tier lists, builds de itens, posicionamento e guias.
+            </p>
           </div>
-          <div className="h-8 w-px bg-[var(--border)]" />
-          <div className="text-center">
-            <p className="text-2xl font-bold" style={{ color: '#f59e0b' }}>{sCount}</p>
-            <p className="text-xs text-[var(--text-secondary)] mt-0.5">S-Tier</p>
-          </div>
-          <div className="h-8 w-px bg-[var(--border)]" />
-          <div className="text-center">
-            <p className="text-2xl font-bold" style={{ color: '#00d4aa' }}>{aCount}</p>
-            <p className="text-xs text-[var(--text-secondary)] mt-0.5">A-Tier</p>
-          </div>
-        </div>
-      </section>
 
-      {/* Comps by tier */}
-      {tiers.map((tier) => {
-        const tierComps = comps.filter((c) => c.tier === tier)
-        if (!tierComps.length) return null
-        return (
-          <section key={tier} className="mb-12">
-            <div className="flex items-center gap-3 mb-6">
-              <span
-                className="rounded-lg px-3 py-1 text-sm font-bold"
-                style={{ background: tierColors[tier] + '22', color: tierColors[tier] }}
-              >
-                {tierLabels[tier]}
-              </span>
-              <div className="flex-1 h-px bg-[var(--border)]" />
-              <span className="text-xs text-[var(--text-secondary)]">
-                {tierComps.length} comp{tierComps.length > 1 ? 's' : ''}
-              </span>
-            </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-              {tierComps.map((comp) => (
-                <CompCard key={comp.id} comp={comp} />
-              ))}
-            </div>
-          </section>
-        )
-      })}
+          {/* ALL COMPS GRID */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+            {tftComps.map((comp) => (
+              <CompCard key={comp.id} comp={comp} />
+            ))}
+          </div>
 
-      {/* Patch notes highlight */}
-      <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-6">
-        <h2 className="text-sm font-bold text-[var(--text-primary)] mb-4">
-          Principais mudanças no Patch 16.6
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {[
-            { label: 'Kalista', change: '70 → 30 Souls para destrave' },
-            { label: 'Ryze', change: '4 → 3 regiões para destrave' },
-            { label: 'Mel', change: 'Destrava com 1★ (antes 2★)' },
-            { label: 'Veigar', change: '1 Rabadon para destrave (antes 2)' },
-            { label: 'Warwick', change: 'Mana 0/90 → 0/70 (casta mais rápido)' },
-            { label: 'Ionia Path of Blades', change: 'Agora concede AP em vez de on-hit' },
-            { label: 'T-Hex', change: 'Nerfado para fora do meta' },
-            { label: 'Yone', change: 'Destrava com Yasuo 2★ (antes 3★)' },
-          ].map((item) => (
-            <div
-              key={item.label}
-              className="flex items-start gap-2 rounded-lg border border-[var(--border)] bg-[var(--surface-2)] px-3 py-2"
-            >
-              <span className="text-[var(--accent)] font-bold text-xs shrink-0 mt-0.5">▸</span>
-              <div>
-                <span className="text-xs font-bold text-[var(--text-primary)]">{item.label}: </span>
-                <span className="text-xs text-[var(--text-secondary)]">{item.change}</span>
+          {/* BY TIER */}
+          {tierGroups.map(({ tier, comps }) => (
+            <section key={tier} id={`tier-${tier}`} className="mb-10">
+              <div className="flex items-center gap-3 mb-4">
+                <TierTag tier={tier} />
+                <h2 className="text-xl font-bold text-[var(--color-text-primary)]">
+                  Comps Tier {tier}
+                </h2>
               </div>
-            </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {comps.map((comp) => (
+                  <Link
+                    key={comp.id}
+                    href={`/tft/${comp.slug}`}
+                    className="group rounded-xl border border-[var(--color-border-primary)] bg-[var(--color-bg-card)] p-5 transition-all duration-300 hover:border-[var(--color-border-tft)] hover:bg-[var(--color-bg-card-hover)]"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <TierTag tier={comp.tier} />
+                      <h3 className="font-bold text-[var(--color-text-primary)] group-hover:text-[var(--color-text-accent)]">
+                        {comp.name}
+                      </h3>
+                      {comp.trending && (
+                        <span className="ml-auto text-xs px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30">
+                          HOT
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-sm text-[var(--color-text-secondary)] line-clamp-2 mb-3">
+                      {comp.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1 mb-3">
+                      {comp.coreChampions.slice(0, 3).map((champ) => (
+                        <span
+                          key={champ.name}
+                          className="px-2 py-0.5 rounded bg-[var(--color-bg-tertiary)] text-xs text-[var(--color-text-secondary)]"
+                        >
+                          {champ.name} ({champ.cost}💰)
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex items-center justify-between text-xs text-[var(--color-text-muted)]">
+                      <span>Patch {comp.patch} · {comp.difficulty}</span>
+                      <span>⬆ {comp.votes}</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
           ))}
         </div>
-      </section>
+      </div>
     </div>
   )
 }

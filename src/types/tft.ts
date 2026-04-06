@@ -1,39 +1,66 @@
-export type TFTTier = 'S' | 'A' | 'B' | 'C'
+// ========================
+// TYPES — Teamfight Tactics
+// ========================
 
-export type TFTDifficulty = 'Fácil' | 'Médio' | 'Difícil'
-
-export type TFTPlaystyle = 'Fast 9' | 'Slow Roll' | 'Reroll' | 'Flex'
-
-export type TFTRole = 'carry' | 'tank' | 'support' | 'flex'
-
-export interface BoardPosition {
-  col: number // 0–6 (esquerda para direita)
-  row: number // 0–3 (frente para trás, 0 = frontline)
-}
+export type TFTTier = 'S' | 'A' | 'B' | 'C' | 'D'
 
 export interface TFTChampion {
   name: string
-  cost: 1 | 2 | 3 | 4 | 5
-  role: TFTRole
-  items?: string[]
-  position: BoardPosition
+  cost: number            // 1-5 gold
+  traits: string[]
 }
 
-export interface TFTTrait {
+export interface TFTItem {
   name: string
-  count: number
-  color: string
+  components: string[]
+  icon?: string
 }
 
 export interface TFTComp {
   id: string
   name: string
+  slug: string
   tier: TFTTier
-  difficulty: TFTDifficulty
-  playstyle: TFTPlaystyle
+  patch: string           // e.g. "16.6"
+  difficulty: 'Fácil' | 'Médio' | 'Difícil'
   description: string
-  when: string
-  champions: TFTChampion[]
-  traits: TFTTrait[]
-  tips: string[]
+  coreChampions: TFTChampion[]
+  synergies: TFTSynergy[]
+  carryItems: Record<string, TFTItem[]>  // champion name -> items
+  positioning: PositioningSlot[]
+  guide: {
+    early: string
+    mid: string
+    late: string
+  }
+  augments: string[]
+  votes: number
+  trending: boolean
+  tags: string[]
+  createdAt: string
+}
+
+export interface TFTSynergy {
+  name: string
+  count: number           // ativos no board
+  maxCount: number
+  description: string
+}
+
+export interface PositioningSlot {
+  row: number             // 0 = frente, 1 = meio, 2 = trás
+  col: number             // posição na fileira (0-6)
+  champion: string
+}
+
+export interface TFTPatch {
+  version: string
+  date: string
+  changes: PatchChange[]
+}
+
+export interface PatchChange {
+  type: 'buff' | 'nerf' | 'new' | 'removed'
+  target: string
+  description: string
 }

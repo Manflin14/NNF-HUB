@@ -1,32 +1,37 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import './globals.css'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import { Inter, JetBrains_Mono } from 'next/font/google'
+import '../styles/globals.css'
+import Navbar from '@/components/layout/Navbar'
+import Footer from '@/components/layout/Footer'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
+const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
 
 export const metadata: Metadata = {
-  title: 'NNF HUB — EA FC 26',
-  description: 'Guia completo de builds meta para Pro Clubs no EA FC 26. Encontre o estilo certo para cada posição.',
+  title: {
+    default: 'NNF HUB — Builds & Estratégias Competitivas',
+    template: '%s | NNF HUB',
+  },
+  description:
+    'Hub profissional de builds, composições e estratégias para EA FC Pro Clubs e Teamfight Tactics. Guias atualizados, tier lists e dicas de meta.',
+  keywords: ['EA FC 26', 'Pro Clubs', 'TFT', 'Teamfight Tactics', 'builds', 'composições', 'guia', 'meta', 'tier list'],
+  authors: [{ name: 'NNF HUB Team' }],
+  openGraph: {
+    title: 'NNF HUB — Builds & Estratégias Competitivas',
+    description: 'Hub profissional de builds e estratégias para jogos competitivos.',
+    type: 'website',
+    locale: 'pt_BR',
+  },
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
-      <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--text-primary)]">
+    <html lang="pt-BR" className={`${inter.variable} ${jetbrains.variable}`}>
+      <body className="flex min-h-screen flex-col">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
